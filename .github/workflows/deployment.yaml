@@ -28,8 +28,7 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v4
         with:
-          start-server: npm run start-backend
-          start-frontend: npm run start-frontend
+          start :  npm run start-backend && npm run start-frontend
           wait-on: http://localhost:3003
       # Fly deployment steps
       - name: Setup Flyctl
