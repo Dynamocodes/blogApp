@@ -17,12 +17,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - name: npm install & build
+      - name: npm install
         run: npm install
-      - name: Install concurrently
-        run: npm install -g concurrently
-      - name: Install wait-on
-        run: npm install -g wait-on
+      - name: npm install frontend
+        run: cd frontend && npm install
+      - name: npm install backend
+        run: cd backend && npm install
       - name: e2e tests
         run : npm run e2e
       # Fly deployment steps
