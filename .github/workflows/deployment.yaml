@@ -28,8 +28,9 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v4
         with:
-          start :  npm run start-server && npm run start-client
+          start :  npx concurrently "npm run start-server:test" "npm run start-client"
           wait-on: http://localhost:3003
+          wait-on-timeout: 120
       # Fly deployment steps
       - name: Setup Flyctl
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
