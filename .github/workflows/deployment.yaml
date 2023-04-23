@@ -23,6 +23,8 @@ jobs:
         run: cd frontend && npm install
       - name: npm install backend
         run: cd backend && npm install
+      - name: npm install -g concurrently
+        run : npm install -g concurrently
       - name: e2e tests
         run : npm run e2e
       # Fly deployment steps
