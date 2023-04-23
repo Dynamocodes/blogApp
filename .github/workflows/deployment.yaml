@@ -19,6 +19,8 @@ jobs:
           node-version: '16'
       - name: npm install & build
         run: npm install
+      - name: Install concurrently
+      run: npm install -g concurrently
       - name: e2e tests
         run : npm run e2e
       # Fly deployment steps
