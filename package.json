@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client-install": "cd frontend && npm ci",
     "server-install": "cd backend && npm ci",
+    "start-client": "cd frontend && npm start",
+    "start-server": "cd backend && npm run start:test",
     "client-build": "npm run client-install && npm run server-install && cd frontend && npm run build",
     "e2e": "cd frontend && npm run e2e",
     "build": "npm run client-build",
