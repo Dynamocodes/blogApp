@@ -29,7 +29,7 @@ jobs:
         uses: cypress-io/github-action@v4
         with:
           build: npm run client-build
-          start: npm run start-server:test && npm run e2e
+          start: npm run start-server:test
           wait-on: http://localhost:3003
           working-directory: frontend
       # Fly deployment steps
