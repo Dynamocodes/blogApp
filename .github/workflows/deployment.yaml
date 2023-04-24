@@ -23,8 +23,6 @@ jobs:
         run: cd frontend && npm install
       - name: npm install backend
         run: cd backend && npm install
-      -name: npm run build
-        run: npm run client-build
       - name: e2e tests
         uses: cypress-io/github-action@v4
         with:
