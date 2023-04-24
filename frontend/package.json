@@ -18,7 +18,7 @@
     "eslint": "eslint .",
     "start-backend": "cd ../backend && npm run start:test",
     "start-frontend": "npm start",
-    "e2e": "concurrently --kill-others --success first \"npm:start-backend\" \"npm:start-frontend\" \"wait-on http://localhost:3000 http://localhost:3003 && cypress run\"",
+    "e2e": "cypress run",
     "cypress:open": "cypress open"
   },
   "eslintConfig": {

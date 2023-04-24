@@ -24,12 +24,7 @@ jobs:
       - name: npm install backend
         run: cd backend && npm install
       - name: e2e tests
-        uses: cypress-io/github-action@v4
-        with:
-          build : npm run client-build
-          start : npm run start-server:test
-          wait-on : http://localhost:3003
-
+        run: npm run start-e2e
       # Fly deployment steps
       - name: Setup Flyctl
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}

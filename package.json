@@ -10,7 +10,7 @@
     "start-client": "cd frontend && npm start",
     "start-server:test": "cd backend && npm run start:test",
     "client-build": "cd frontend && npm run build",
-    "start-e2e": "npx concurrently \"npm run start-server:test\" \"npm run start-client\" \"npx wait-on http://localhost:3003 && npm run e2e\"",
+    "start-e2e": "npx concurrently --kill-others --success first \"npm run start-server:test\" \"npm run start-client\" \"npx wait-on http://localhost:3003 && npm run e2e\"",
     "e2e": "cd frontend && npm run e2e",
     "build": "npm run client-build",
     "start": "concurrently \"cd frontend && npm start\" \"cd backend && npm run dev\"",
