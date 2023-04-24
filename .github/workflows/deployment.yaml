@@ -32,6 +32,9 @@ jobs:
           start: npm run start-backend:test
           wait-on: http://localhost:3003
           working-directory: frontend
+        env:
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET:  ${{ secrets.SECRET }}
       # Fly deployment steps
       - name: Setup Flyctl
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
