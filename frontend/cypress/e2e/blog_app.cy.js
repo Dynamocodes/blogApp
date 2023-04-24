@@ -120,7 +120,9 @@ describe('Blog app', function() {
 
       it('The blog are ordered by the amount of likes they have', function(){
         cy.contains('view').click()
+        cy.wait(100)
         cy.contains('view').click()
+        cy.wait(100)
         cy.get('.detailedBlog').eq(0).should('contain', 'first blog Elias Hietanen')
         cy.get('.detailedBlog').eq(0).should('contain', 'likes 0')
         cy.get('.detailedBlog').eq(1).should('contain', 'second blog Elias Hietanen')
