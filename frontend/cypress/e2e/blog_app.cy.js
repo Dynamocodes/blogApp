@@ -14,7 +14,7 @@ describe('Blog app', function() {
     }
     cy.request('POST', 'http://localhost:3003/api/users/', user1)
     cy.request('POST', 'http://localhost:3003/api/users/', user2)
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3003')
   })
 
   it('login form is shown', function() {
@@ -120,18 +120,23 @@ describe('Blog app', function() {
 
       it('The blog are ordered by the amount of likes they have', function(){
         cy.contains('view').click()
+        cy.wait(500)
         cy.contains('view').click()
+        cy.wait(500)
         cy.get('.detailedBlog').eq(0).should('contain', 'first blog Elias Hietanen')
         cy.get('.detailedBlog').eq(0).should('contain', 'likes 0')
         cy.get('.detailedBlog').eq(1).should('contain', 'second blog Elias Hietanen')
         cy.get('.detailedBlog').eq(1).should('contain', 'likes 0')
         cy.get('.like').eq(1).click()
+        cy.wait(500)
         cy.get('.detailedBlog').eq(0).should('contain', 'second blog Elias Hietanen')
         cy.get('.detailedBlog').eq(0).should('contain', 'likes 1')
         cy.get('.detailedBlog').eq(1).should('contain', 'first blog Elias Hietanen')
         cy.get('.detailedBlog').eq(1).should('contain', 'likes 0')
         cy.get('.like').eq(1).click()
+        cy.wait(500)
         cy.get('.like').eq(1).click()
+        cy.wait(500)
         cy.get('.detailedBlog').eq(0).should('contain', 'first blog Elias Hietanen')
         cy.get('.detailedBlog').eq(0).should('contain', 'likes 2')
         cy.get('.detailedBlog').eq(1).should('contain', 'second blog Elias Hietanen')

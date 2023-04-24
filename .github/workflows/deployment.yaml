@@ -17,8 +17,24 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - name: npm install & build
+      - name: npm install
         run: npm install
+      - name: npm install frontend
+        run: cd frontend && npm install
+      - name: npm install backend
+        run: cd backend && npm install
+      - name: Install cypress
+        run: npm install cypress
+      - name: e2e tests
+        uses: cypress-io/github-action@v4
+        with:
+          build: npm run build
+          start: npm run start-backend:test
+          wait-on: http://localhost:3003
+          working-directory: frontend
+        env:
+          TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+          SECRET:  ${{ secrets.SECRET }}
       # Fly deployment steps
       - name: Setup Flyctl
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ', '), '#skip') }}
