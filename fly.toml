@@ -15,11 +15,9 @@ processes = []
   auto_rollback = true
 
 [[services]]
-  http_checks = []
   internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
-  script_checks = []
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
@@ -39,3 +37,42 @@ processes = []
     interval = "15s"
     restart_limit = 0
     timeout = "2s"
+
+  [deploy]
+  release_command = "npm run build"
+
+  [processes]
+    app = "node app.js"
+
+  [build]
+    [build.args]
+      NODE_VERSION = "16.19.0"
+
+  [[services.http_checks]]
+  interval = 10000
+  grace_period = "5s"
+  method = "get"
+  path = "/"
+  protocol = "http"
+  restart_limit = 0
+  timeout = 2000
+  tls_skip_verify = false
+  [services.http_checks.headers]
+
+[[services.http_checks]]
+  name = "version_check"
+  interval = "15s"
+  grace_period = "30s"
+  method = "get"
+  path = "/health"
+  protocol = "http"
+  timeout = "10s"
+  restart_limit = 0
+  tls_skip_verify = false
+
+[[services.script_checks]]
+  command = "/app/health_check.sh"
+  grace_period = "1s"
+  interval = "5s"
+  restart_limit = 0
+  timeout = "1s"
