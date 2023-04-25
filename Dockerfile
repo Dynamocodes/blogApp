@@ -19,7 +19,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install && npm run client-install && npm run server-install npm run build
+RUN npm install && npm run client-install && npm run server-install && npm run build
 
 FROM debian:bullseye-slim
 
