@@ -143,7 +143,7 @@ const App = () => {
       <Notification notification={notification}/>
       <h2>blogs</h2>
       <div>
-        {user.name} logged in
+        {user.name} logged in !
         <button id='logoutButton' onClick={handleLogout}>logout</button>
       </div>
       <div>
