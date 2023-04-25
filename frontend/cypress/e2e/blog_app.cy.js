@@ -62,6 +62,7 @@ describe('Blog app', function() {
       cy.get('#authorInput').type('Elias Hietanen')
       cy.get('#urlInput').type('www.void.com')
       cy.get('#createBlogButton').click()
+      cy.wait(500)
       cy.get('.addNotification').should('contain', 'a new blog new title by Elias Hietanen added!')
       cy.get('.addNotification').should('have.css', 'color', 'rgb(7, 154, 41)')
       cy.get('.shortenedBlog').should('contain', 'new title Elias Hietanen')
@@ -80,6 +81,7 @@ describe('Blog app', function() {
         cy.get('#authorInput').type('Elias Hietanen')
         cy.get('#urlInput').type('www.void.com')
         cy.get('#createBlogButton').click()
+        cy.wait(500)
       })
 
       it('A blog can be liked', function(){
@@ -93,12 +95,14 @@ describe('Blog app', function() {
       it('A blog can be deleted by the user who created it', function(){
         cy.contains('view').click()
         cy.contains('remove').click()
+        cy.wait(500)
         cy.get('html').should('not.contain', 'new title Elias Hietanen')
       })
 
       it('A blog can\'t be deleted by another user', function(){
         cy.get('#logoutButton').click()
         cy.login({ username: 'dynamo', password: 'password' })
+        cy.wait(500)
         cy.contains('view').click()
         cy.get('.removeButton').should('not.exist')
       })
@@ -111,11 +115,13 @@ describe('Blog app', function() {
         cy.get('#authorInput').type('Elias Hietanen')
         cy.get('#urlInput').type('www.void.com')
         cy.get('#createBlogButton').click()
+        cy.wait(500)
         cy.get('#toggleOpen').click()
         cy.get('#titleInput').type('second blog')
         cy.get('#authorInput').type('Elias Hietanen')
         cy.get('#urlInput').type('www.void.com')
         cy.get('#createBlogButton').click()
+        cy.wait(500)
       })
 
       it('The blog are ordered by the amount of likes they have', function(){
