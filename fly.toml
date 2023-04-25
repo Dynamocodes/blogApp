@@ -42,7 +42,7 @@ processes = []
   release_command = "npm run build"
 
   [processes]
-    app = "node app.js"
+    app = "node backend/index.js"
 
   [build]
     [build.args]
